@@ -9,7 +9,7 @@ export default function TheFilter() {
   //Price per day
   const priceRange = useRef(null)
   const priceLabel = useRef(null)
-  let [currentPricePerDay, setCurrentPricePerDay] = useState(null)
+  let [selectedPricePerDay, setSelectedPricePerDay] = useState(null)
   const prices = []
 
   state.forEach(elem => prices.push(elem.costPerDay))
@@ -18,13 +18,16 @@ export default function TheFilter() {
   let maxPricePerDay = prices.sort((a, b) => b - a)[0]
   //People amount 
   let maxPeopleAmount = 0
-  
-  state.map(elem => elem.costPerDay > maxPeopleAmount ? maxPeopleAmount = elem.costPerDay : null)
+  const amountOfPeopleRange = useRef(null)
+  const peopleAmountLabel = useRef(null)
+  let [selectedPeopleAmount, setSelectedPeopleAmount] = useState(null)
+
+  state.map(elem => elem.numOfPeople > maxPeopleAmount ? maxPeopleAmount = elem.numOfPeople : null)
 
   const styles = {
     filter: {
       width: '80%',
-      minHeight: '100px',
+      height: '100px',
       border: '1px solid red',
       display: 'flex',
       color: 'grey',
@@ -35,24 +38,23 @@ export default function TheFilter() {
       flexDirection: 'column', 
       alignItems: 'center', 
       minWidth: '130px', 
-      paddingTop: '10px',
+      height: '100%',
       marginLeft: '20px',
-      justifyContent: 'space-around'
+      justifyContent: 'space-evenly',
     }
   }
 
-  const togglePriceLabel = () => {
-    priceLabel.current.style.display = 'none'
-  }
-
-  const showChosenPriceLabel = () => { // !!!!!!!!
-    clearTimeout(togglePriceLabel)
-
-    setCurrentPricePerDay(priceRange.current.value)
-    priceLabel.current.style.display = 'block'
-    setTimeout(() => togglePriceLabel(), 1000)
-  }
-
+  const toggleLabel = (label) => {
+    label.current.style.display = 'block'
+    switch(label) {
+      case priceLabel: setSelectedPricePerDay(priceRange.current.value)
+      break;
+      case peopleAmountLabel: setSelectedPeopleAmount(amountOfPeopleRange.current.value)
+      break;
+    }
+    setTimeout(() => label.current.style.display = 'none', 1000) // !Little bug!
+  } 
+  
   return (
     <div className="filter" style={styles.filter}>
       <div className="by-rating" 
@@ -89,19 +91,19 @@ export default function TheFilter() {
             style={{width: '100%'}}
             className="price-range"
             ref={priceRange}
-            onChange={showChosenPriceLabel}
+            onChange={() => toggleLabel(priceLabel)}
           />
-          <label ref={priceLabel} style={{display: 'none', position: 'absolute', left: '40%', top: '-20px'}}>{currentPricePerDay}</label>
+          <label ref={priceLabel} style={{display: 'none', position: 'absolute', left: '40%', top: '-20px'}}>{selectedPricePerDay}</label>
           <span style={{marginLeft: '5px'}}>{maxPricePerDay}$</span>
         </div>
       </div>
       <div className="by-num-of-people" style={styles.filterComponent}>
         <label>Amount of people</label>
-        <span className="people-amount-range"></span>
-        <div className="people-input" styles={{display: 'flex'}}>
-          <span></span>
-          <input type="range" min="1" max={maxPeopleAmount}/>
-          <span></span>
+        <div className="people-input" style={{display: 'flex', width: '100%', position: 'relative'}}>
+          <span>1</span>
+          <input ref={amountOfPeopleRange} onChange={() => toggleLabel(peopleAmountLabel)} type="range" min="1" max={maxPeopleAmount} step="1"/>
+          <label ref={peopleAmountLabel} style={{position: 'absolute', left: '40%', top: '-20px'}}>{selectedPeopleAmount}</label>
+          <span>{maxPeopleAmount}</span>
         </div>
       </div>
     </div>
