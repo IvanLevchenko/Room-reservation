@@ -64,9 +64,7 @@ export default function RentItem({
           </svg>
           {numOfBedrooms}
         </div>
-        <div className="cost-per-day" style={{display: 'flex', justifySelf: 'flex-end'}}>
-          1
-        </div>
+        <div className="cost-per-day" style={{display: 'flex', justifySelf: 'flex-end'}}></div>
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import RentItem from './RentItem'
 
-export default function SuggestionsWrapper() {
+export default function SuggestionsWrapper({filteredPrice, filteredPeopleAmount, filteredBedroomAmount}) {
   const styles = {
     width: '100%',
     display: 'flex',
@@ -10,12 +10,17 @@ export default function SuggestionsWrapper() {
     flexWrap: 'wrap',
   }
 
-  const state = useSelector(state => state.apartments.apartmentsData)
-
+  const apartmentsData = useSelector(state => state.apartments.apartmentsData)
+  
   return (
     <div className="suggestions-wrapper" style={styles}>
-      {state.map(flat => {
-        return <RentItem 
+      {apartmentsData.map(flat => {
+        if(
+          filteredPrice <= flat.costPerDay
+          && filteredPeopleAmount <= flat.numOfPeople
+          && filteredBedroomAmount <= flat.numOfBedrooms
+        ) {
+          return <RentItem 
           key={flat.id} 
           title={flat.title}
           rating={flat.rating}
@@ -27,6 +32,7 @@ export default function SuggestionsWrapper() {
           rules={flat.rules}
           images={flat.images}
         />
+        }
       })}
     </div>
   )  

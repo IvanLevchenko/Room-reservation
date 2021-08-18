@@ -28,7 +28,7 @@ export const apartmentsSlice = createSlice({
       },
       {
         id: 3, title: 'Luxury apartment in the city center', rating: 4.9, city: 'Lviv', costPerDay: 121,
-        numOfPeople: 4, numOfBedrooms: 1, address: 'Gerald\'s square 3',
+        numOfPeople: 4, numOfBedrooms: 2, address: 'Gerald\'s square 3',
         rules: ['No smoking', 'No pets', 'No parties or events'],
         images: [
           'https://a0.muscache.com/im/pictures/8d15ee6e-c896-46f9-9b98-874f2ea10968.jpg?im_w=1200',
