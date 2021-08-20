@@ -10,3 +10,28 @@ body {
   filter: grayscale(1)
 }
   
+.modal-wrapper {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal {
+  min-width: 80%;
+  min-height: 500px;
+  background: white;
+  display: flex;
+  z-index: 2000;
+}

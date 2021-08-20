@@ -1,8 +1,10 @@
 import React from 'react'
 
 export default function RentItem({
-  title, rating, images, rules, address, numOfBedrooms, numOfPeople, costPerDay, city 
+  title, rating, images, rules, address, numOfBedrooms, numOfPeople, costPerDay, city,
+  onShowModal 
 }) {
+
   const styles = {
     rentItem: {
       minWidth: '400px',
@@ -30,8 +32,20 @@ export default function RentItem({
     }
   }
   
+  const modalData = {
+    title, 
+    rating, 
+    images, 
+    rules, 
+    address, 
+    numOfBedrooms, 
+    numOfPeople, 
+    costPerDay, 
+    city,
+  }
+
   return (
-    <div className="rent-item" style={styles.rentItem}>
+    <div className="rent-item" style={styles.rentItem} onClick={() => onShowModal(true, modalData)}>
       <div className="item-img">
         <span className="price-tag" style={styles.priceTag}>{costPerDay}$/day</span>
         <img src={images[0]} alt="" height="300px"/>

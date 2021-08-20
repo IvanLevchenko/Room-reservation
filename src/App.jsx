@@ -3,6 +3,7 @@ import './App.css';
 // Components
 import TheFilter from './components/TheFilter';
 import SuggestionsWrapper from './components/SuggestionsWrapper';
+import Modal from './components/Modal'
 
 function App() {
   const styles = {
@@ -15,7 +16,6 @@ function App() {
       background: 'linear-gradient(13deg, rgba(238,174,202,1) 0%, rgba(204,179,214,1) 0%, rgba(148,187,233,1) 100%)',
       width: '100%',
       marginBottom: '20px',
-      padding: '5px',
       color: 'white'
     },
     wrapper: {
@@ -25,7 +25,7 @@ function App() {
       alignItems: 'center'
     }
   }
-
+  //Filter
   let [currentPrice, setCurrentPrice] = useState(0)
   let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0)
   let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0)
@@ -41,9 +41,21 @@ function App() {
   const filterBedroomAmount = (value) => {
     setCurrentBedroomAmount(value)
   }
+  
+  //Modal
+  let [modalIsActive, setModalIsActive] = useState(false)
+  let [modalData, setModalData] = useState({})
+
+  const toggleModal = (toggler, data) => {
+    setModalData(data)
+    setModalIsActive(toggler)
+  }
 
   return (
     <div className="App" style={styles.App}>
+      {modalIsActive 
+      ? <Modal isActive={modalIsActive} onCloseModal={toggleModal} data={modalData}/>
+      : <></>}
       <header className="header" style={styles.header}>
         <h1 style={{marginLeft: '10px'}}>RENT</h1>
       </header>
@@ -57,6 +69,7 @@ function App() {
           filteredPrice={currentPrice}
           filteredPeopleAmount={currentPeopleAmount}
           filteredBedroomAmount={currentBedroomAmount}
+          onShowModal={toggleModal}
         />
       </div>
     </div>

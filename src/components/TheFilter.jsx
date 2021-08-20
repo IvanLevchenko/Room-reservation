@@ -68,10 +68,11 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
     filter: {
       width: '80%',
       height: '100px',
-      border: '1px solid red',
       display: 'flex',
       color: 'grey',
-      fontWeight: 'bold'
+      fontWeight: 'bold',
+      flexWrap: 'wrap',
+      position: 'relative'
     },
     filterComponent: {
       display: 'flex', 
