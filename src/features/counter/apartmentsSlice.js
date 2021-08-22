@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const apartmentsSlice = createSlice({
   name: 'apartments',
@@ -42,8 +42,8 @@ export const apartmentsSlice = createSlice({
   reducers: {
 
   }
-})
+});
 
-export const {  } = apartmentsSlice.actions
+export const {  } = apartmentsSlice.actions;
 
-export default apartmentsSlice.reducer
+export default apartmentsSlice.reducer;

@@ -1,4 +1,8 @@
-import React from 'react'
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Link
+} from 'react-router-dom';
 
 export default function RentItem({
   title, rating, images, rules, address, numOfBedrooms, numOfPeople, costPerDay, city,
@@ -13,7 +17,8 @@ export default function RentItem({
       backgroundColor: 'white',
       boxShadow: '0 3px 20px rgba(0,0,0,0.19), 0 4px 6px rgba(0,0,0,0.23)',
       cursor: 'pointer',
-      position: 'relative'
+      position: 'relative',
+      textDecoration: 'none'
     },
     priceTag: {
       minWidth: '55px', 
@@ -30,7 +35,7 @@ export default function RentItem({
       fontSize: '20px',
       padding : '5px'
     }
-  }
+  };
   
   const modalData = {
     title, 
@@ -42,18 +47,19 @@ export default function RentItem({
     numOfPeople, 
     costPerDay, 
     city,
-  }
+  };
 
   return (
-    <div className="rent-item" style={styles.rentItem} onClick={() => onShowModal(true, modalData)}>
-      <div className="item-img">
-        <span className="price-tag" style={styles.priceTag}>{costPerDay}$/day</span>
-        <img src={images[0]} alt="" height="300px"/>
-      </div>
-      <div className="item-header" style={{display: 'flex', alignItems: 'center'}}>
-        <h2 style={{color: '#6C6C6C', marginLeft: '10px'}}>{title}</h2>       
-      </div>
-      <div className="item-footer" style={{display: 'flex', marginLeft: '10px'}}>
+    <Router>
+      <Link to={`/${title}`} className="rent-item" style={styles.rentItem} onClick={() => onShowModal(true, modalData)}>
+        <div className="item-img">
+          <span className="price-tag" style={styles.priceTag}>{costPerDay}$/day</span>
+          <img src={images[0]} alt="" height="300px"/>
+        </div>
+        <div className="item-header" style={{display: 'flex', alignItems: 'center'}}>
+          <h2 style={{color: '#6C6C6C', marginLeft: '10px'}}>{title}</h2>       
+        </div>
+        <div className="item-footer" style={{display: 'flex', marginLeft: '10px'}}>
         <div className="info" style={{display: 'flex', alignItems: 'center'}}>
           <p style={{display: 'flex', alignItems: 'center', marginRight: '10px'}}>
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="grey" className="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -80,6 +86,7 @@ export default function RentItem({
         </div>
         <div className="cost-per-day" style={{display: 'flex', justifySelf: 'flex-end'}}></div>
       </div>
-    </div>
-  )
-}
+      </Link>
+    </Router>
+  );
+};

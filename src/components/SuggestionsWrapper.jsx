@@ -1,6 +1,6 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import RentItem from './RentItem'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import RentItem from './RentItem';
 
 export default function SuggestionsWrapper({
   filteredPrice, filteredPeopleAmount, filteredBedroomAmount, onShowModal
@@ -40,5 +40,5 @@ export default function SuggestionsWrapper({
         }
       })}
     </div>
-  )  
-}
+  );
+};

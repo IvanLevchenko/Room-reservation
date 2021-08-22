@@ -30,8 +30,16 @@ body {
 
 .modal {
   min-width: 80%;
-  min-height: 500px;
+  min-height: 700px;
   background: white;
   display: flex;
   z-index: 2000;
+}
+
+.modal-images {
+  max-height: 500px;
+}
+
+.image-gallery {
+  max-height: 500px;  
 }

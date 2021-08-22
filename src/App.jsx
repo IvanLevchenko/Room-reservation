@@ -1,9 +1,16 @@
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from 'react-router-dom';
 import './App.css';
 // Components
 import TheFilter from './components/TheFilter';
 import SuggestionsWrapper from './components/SuggestionsWrapper';
-import Modal from './components/Modal'
+import Home from './components/Home';
+// import Modal from './components/Modal';
 
 function App() {
   const styles = {
@@ -18,62 +25,45 @@ function App() {
       marginBottom: '20px',
       color: 'white'
     },
-    wrapper: {
-      width: '95%',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center'
-    }
-  }
+  };
   //Filter
-  let [currentPrice, setCurrentPrice] = useState(0)
-  let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0)
-  let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0)
+  // let [currentPrice, setCurrentPrice] = useState(0);
+  // let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0);
+  // let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0);
 
-  const filterPrice = (value) => {
-    setCurrentPrice(value)
-  }
+  // const filterPrice = (value) => {
+  //   setCurrentPrice(value)
+  // };
 
-  const filterPeopleAmount = (value) => {
-    setCurrentPeopleAmount(value)
-  }
+  // const filterPeopleAmount = (value) => {
+  //   setCurrentPeopleAmount(value)
+  // };
 
-  const filterBedroomAmount = (value) => {
-    setCurrentBedroomAmount(value)
-  }
+  // const filterBedroomAmount = (value) => {
+  //   setCurrentBedroomAmount(value)
+  // };
   
   //Modal
-  let [modalIsActive, setModalIsActive] = useState(false)
-  let [modalData, setModalData] = useState({})
+  // let [modalIsActive, setModalIsActive] = useState(false);
+  // let [modalData, setModalData] = useState({});
 
-  const toggleModal = (toggler, data) => {
-    setModalData(data)
-    setModalIsActive(toggler)
-  }
+  // const toggleModal = (toggler, data) => {
+  //   setModalData(data);
+  //   setModalIsActive(toggler);
+  // };
 
   return (
     <div className="App" style={styles.App}>
-      {modalIsActive 
-      ? <Modal isActive={modalIsActive} onCloseModal={toggleModal} data={modalData}/>
-      : <></>}
       <header className="header" style={styles.header}>
         <h1 style={{marginLeft: '10px'}}>RENT</h1>
       </header>
-      <div className="main-wrapper" style={styles.wrapper}>
-        <TheFilter 
-          onChangePrice={filterPrice}
-          onChangePeopleAmount={filterPeopleAmount}
-          onChangeBedroomAmount={filterBedroomAmount}
-        />
-        <SuggestionsWrapper 
-          filteredPrice={currentPrice}
-          filteredPeopleAmount={currentPeopleAmount}
-          filteredBedroomAmount={currentBedroomAmount}
-          onShowModal={toggleModal}
-        />
-      </div>
+      <Router>
+        <Switch>
+          <Route path="/" component={Home} />
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
 export default App;
