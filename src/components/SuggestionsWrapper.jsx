@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import RentItem from './RentItem';
 
 export default function SuggestionsWrapper({
-  filteredPrice, filteredPeopleAmount, filteredBedroomAmount, onShowModal
+  filteredPrice, filteredPeopleAmount, filteredBedroomAmount, onShowModal, 
 }) {
   const styles = {
     width: '100%',

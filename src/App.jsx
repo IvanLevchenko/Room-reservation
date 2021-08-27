@@ -6,10 +6,12 @@ import {
   Link
 } from 'react-router-dom';
 import './App.css';
+
 // Components
 import TheFilter from './components/TheFilter';
 import SuggestionsWrapper from './components/SuggestionsWrapper';
 import Home from './components/Home';
+import RentItemPage from './components/RentItemPage';
 // import Modal from './components/Modal';
 
 function App() {
@@ -26,22 +28,6 @@ function App() {
       color: 'white'
     },
   };
-  //Filter
-  // let [currentPrice, setCurrentPrice] = useState(0);
-  // let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0);
-  // let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0);
-
-  // const filterPrice = (value) => {
-  //   setCurrentPrice(value)
-  // };
-
-  // const filterPeopleAmount = (value) => {
-  //   setCurrentPeopleAmount(value)
-  // };
-
-  // const filterBedroomAmount = (value) => {
-  //   setCurrentBedroomAmount(value)
-  // };
   
   //Modal
   // let [modalIsActive, setModalIsActive] = useState(false);
@@ -52,14 +38,16 @@ function App() {
   //   setModalIsActive(toggler);
   // };
 
+
   return (
     <div className="App" style={styles.App}>
-      <header className="header" style={styles.header}>
+      <header style={styles.header}>
         <h1 style={{marginLeft: '10px'}}>RENT</h1>
       </header>
       <Router>
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path="/rent-item" component={RentItemPage} />
         </Switch>
       </Router>
     </div>

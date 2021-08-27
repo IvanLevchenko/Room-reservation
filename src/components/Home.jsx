@@ -3,6 +3,7 @@ import TheFilter from '../components/TheFilter';
 import SuggestionsWrapper from './SuggestionsWrapper';
 
 export default function Home() {
+  //Filter
   let [currentPrice, setCurrentPrice] = useState(0);
   let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0);
   let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0);
@@ -35,11 +36,11 @@ export default function Home() {
         onChangePeopleAmount={filterPeopleAmount}
         onChangeBedroomAmount={filterBedroomAmount}
       />
-      <SuggestionsWrapper 
-        filteredPrice={currentPrice}
-        filteredPeopleAmount={currentPeopleAmount}
-        filteredBedroomAmount={currentBedroomAmount}
-      />
+        <SuggestionsWrapper 
+          filteredPrice={currentPrice}
+          filteredPeopleAmount={currentPeopleAmount}
+          filteredBedroomAmount={currentBedroomAmount}
+        />
     </div>
   )
 };
