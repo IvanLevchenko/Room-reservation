@@ -21,8 +21,8 @@ export default function SuggestionsWrapper({
       {apartmentsData.map(flat => {
         if(
           filteredPrice <= flat.costPerDay
-          && filteredPeopleAmount <= flat.numOfPeople
-          && filteredBedroomAmount <= flat.numOfBedrooms
+          && filteredPeopleAmount <= flat.main.numOfPeople
+          && filteredBedroomAmount <= flat.main.numOfBedrooms
         ) {
           return <RentItem 
             key={flat.id} 
@@ -30,10 +30,10 @@ export default function SuggestionsWrapper({
             rating={flat.rating}
             city={flat.city}
             costPerDay={flat.costPerDay}
-            numOfPeople={flat.numOfPeople}
-            numOfBedrooms={flat.numOfBedrooms}
+            numOfPeople={flat.main.numOfPeople}
+            numOfBedrooms={flat.main.numOfBedrooms}
             address={flat.address}
-            rules={flat.rules}
+            rules={flat.main.rules}
             images={flat.images}
             onShowModal={onShowModal}
           />

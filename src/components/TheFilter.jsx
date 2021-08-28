@@ -24,7 +24,7 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
   const peopleAmountLabel = useRef(null);
   let [selectedPeopleAmount, setSelectedPeopleAmount] = useState(null);
 
-  state.map(elem => elem.numOfPeople > maxPeopleAmount ? maxPeopleAmount = elem.numOfPeople : null);
+  state.map(elem => elem.main.numOfPeople > maxPeopleAmount ? maxPeopleAmount = elem.main.numOfPeople : null);
   
   //Bedrooms amount
   const amountOfBedroomsRange = useRef(null);
@@ -32,7 +32,7 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
   let maxBedroomAmount = 0;
   let [selectedBedroomsAmount, setSelectedBedroomsAmount] = useState(null);
 
-  state.map(elem => elem.numOfBedrooms > maxBedroomAmount ? maxBedroomAmount = elem.numOfBedrooms : null);
+  state.map(elem => elem.main.numOfBedrooms > maxBedroomAmount ? maxBedroomAmount = elem.main.numOfBedrooms : null);
 
   const toggleLabel = (label) => {
     label.current.style.display = 'block'
