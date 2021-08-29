@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Link,
-  useHistory
-} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 import '../App.css';
 
@@ -16,17 +12,17 @@ export default function RentItem({
 
   const history = useHistory();
 
-  const modalData = {
-    title, 
-    rating, 
-    images, 
-    rules, 
-    address, 
-    numOfBedrooms, 
-    numOfPeople, 
-    costPerDay, 
-    city,
-  };
+  // const modalData = {
+  //   title, 
+  //   rating, 
+  //   images, 
+  //   rules, 
+  //   address, 
+  //   numOfBedrooms, 
+  //   numOfPeople, 
+  //   costPerDay, 
+  //   city,
+  // };
 
   const redirectToRentItemPage = () => {
     history.push(`/rent-item/${title}`);
@@ -44,6 +40,7 @@ export default function RentItem({
       textDecoration: 'none'
     },
     priceTag: {
+      fontWeight: 'bold',
       minWidth: '55px', 
       height: '35px', 
       position: 'absolute',
@@ -78,7 +75,7 @@ export default function RentItem({
           </p>
           {[...Array(Math.round(rating))].map((star, indx)=> {
             return (
-              <img src={starPic} alt="" key={indx} />
+              <img src={starPic} alt="" key={indx}/>
             )
           })}
           <svg style={{marginLeft: '5px'}} xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="grey" className="bi bi-person-fill" viewBox="0 0 16 16">

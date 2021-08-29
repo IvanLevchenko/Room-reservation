@@ -37,7 +37,7 @@ export const apartmentsSlice = createSlice({
           email: 'john@gmail.com'
         },
         main: {
-          rules: ['No smoking', 'Pets are allowed', 'No parties or events'],
+          rules: ['No smoking', 'No parties or events'],
           numOfPeople: 2, 
           numOfBedrooms: 1,  
         }

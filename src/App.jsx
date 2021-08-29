@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from 'react-router-dom';
 import './App.css';
 
 // Components
-import TheFilter from './components/TheFilter';
-import SuggestionsWrapper from './components/SuggestionsWrapper';
 import Home from './components/Home';
 import RentItemPage from './components/RentItemPage';
 // import Modal from './components/Modal';

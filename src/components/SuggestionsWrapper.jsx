@@ -38,6 +38,7 @@ export default function SuggestionsWrapper({
             onShowModal={onShowModal}
           />
         }
+        return '';
       })}
     </div>
   );

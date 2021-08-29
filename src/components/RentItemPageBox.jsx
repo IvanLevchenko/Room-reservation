@@ -3,6 +3,8 @@ import React from 'react';
 import bedroom from '../assets/bedroom.svg';
 import noSmoking from '../assets/no-smoking.svg';
 import people from '../assets/people.svg';
+import noPets from '../assets/no-pets.svg';
+import noMusic from '../assets/no-music.svg';
 
 export default function RentItemPageBox({type}) {
 
@@ -15,7 +17,9 @@ export default function RentItemPageBox({type}) {
       width: '150px',
       height: '150px',
       margin: '10px 20px 0 10px',
-      borderRadius: '15px'
+      borderRadius: '15px',
+      pointerEvents: 'none',
+      userSelect: 'none'
     },
     boxInner: {
       height: '100%',
@@ -59,7 +63,17 @@ export default function RentItemPageBox({type}) {
           box = (
             <img src={noSmoking} alt="" />
           )
-        }
+        } break;
+        case 'No pets': {
+          box = (
+            <img src={noPets} alt="" />
+          )
+        } break;
+        case 'No parties or events': {
+          box = (
+            <img src={noMusic} alt="" />
+          )
+        } break;
       }
     } break;
   };
