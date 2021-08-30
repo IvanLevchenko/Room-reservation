@@ -7,18 +7,23 @@ export default function Home() {
   let [currentPrice, setCurrentPrice] = useState(0);
   let [currentPeopleAmount, setCurrentPeopleAmount] = useState(0);
   let [currentBedroomAmount, setCurrentBedroomAmount] = useState(0);
+  let [currentRating, setCurrentRating] = useState(0);
 
-  const filterPrice = (value) => {
+  const filterByPrice = (value) => {
     setCurrentPrice(value)
   };
 
-  const filterPeopleAmount = (value) => {
+  const filterByPeopleAmount = (value) => {
     setCurrentPeopleAmount(value)
   };
 
-  const filterBedroomAmount = (value) => {
+  const filterByBedroomAmount = (value) => {
     setCurrentBedroomAmount(value)
   };
+
+  const filterByRating = (value) => {
+    setCurrentRating(value)
+  }
   
   const styles = {
     wrapper: {
@@ -32,14 +37,16 @@ export default function Home() {
   return (
     <div className="main-wrapper" style={styles.wrapper}>
       <TheFilter 
-        onChangePrice={filterPrice}
-        onChangePeopleAmount={filterPeopleAmount}
-        onChangeBedroomAmount={filterBedroomAmount}
+        onChangePrice={filterByPrice}
+        onChangePeopleAmount={filterByPeopleAmount}
+        onChangeBedroomAmount={filterByBedroomAmount}
+        onChangeRating={filterByRating}
       />
         <SuggestionsWrapper 
           filteredPrice={currentPrice}
           filteredPeopleAmount={currentPeopleAmount}
           filteredBedroomAmount={currentBedroomAmount}
+          filteredRating={currentRating}
         />
     </div>
   )

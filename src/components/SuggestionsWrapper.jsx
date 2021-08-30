@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import RentItem from './RentItem';
 
 export default function SuggestionsWrapper({
-  filteredPrice, filteredPeopleAmount, filteredBedroomAmount, onShowModal, 
+  filteredPrice, filteredPeopleAmount, filteredBedroomAmount, filteredRating
 }) {
   const styles = {
     width: '100%',
@@ -23,6 +23,7 @@ export default function SuggestionsWrapper({
           filteredPrice <= flat.costPerDay
           && filteredPeopleAmount <= flat.main.numOfPeople
           && filteredBedroomAmount <= flat.main.numOfBedrooms
+          && (filteredRating >= flat.rating || filteredRating === 0)
         ) {
           return <RentItem 
             key={flat.id} 
@@ -35,7 +36,6 @@ export default function SuggestionsWrapper({
             address={flat.address}
             rules={flat.main.rules}
             images={flat.images}
-            onShowModal={onShowModal}
           />
         }
         return '';

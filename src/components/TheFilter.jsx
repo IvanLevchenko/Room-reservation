@@ -5,7 +5,9 @@ import '../App.css';
 
 import starImg from '../assets/star.svg';
 
-export default function TheFilter({onChangePrice, onChangePeopleAmount, onChangeBedroomAmount}) {
+export default function TheFilter({
+  onChangePrice, onChangePeopleAmount, onChangeBedroomAmount, onChangeRating
+}) {
   const state = [...useSelector(state => state.apartments.apartmentsData)];
   
   //Price per day
@@ -49,29 +51,7 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
   };
   
   //Filter by rating
-  let [stars, setStars] = useState(null);
-  let addStars = [];
-  
-  for(let i = 0; i < 5; i++) {
-    addStars.push(
-      <img 
-        src={starImg}
-        alt=""
-        key={i} 
-        style={{filter: 'grayscale(1)'}} 
-        onMouseOver={() => lightUpSelectedStars(i)}  
-      />
-    );
-  };
-
-  useEffect(() => {  
-    setStars(addStars)
-  }, []);
-
-  const lightUpSelectedStars = (index) => {
-    // let starsCopy = [...stars];
-    console.log(stars)
-  };
+  let [starIsSelected, setStarIsSelected] = useState({id: null, value: false});
 
   const styles = {
     filter: {
@@ -92,8 +72,14 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
       marginLeft: '20px',
       justifyContent: 'space-evenly',
     },
-    lightedStars: {
-      filter: 'greyscale(0)'
+    starsWrapper: {
+      padding: '0', 
+      listStyle: 'none', 
+      width: '100%', 
+      display: 'flex', 
+      justifyContent: 'space-evenly', 
+      marginTop: '5px',
+      userSelect: 'none',
     }
   };
 
@@ -105,9 +91,22 @@ export default function TheFilter({onChangePrice, onChangePeopleAmount, onChange
         <label>Rating</label>
         <div className="stars" style={{width: '100%'}}>
           <ul 
-            style={{padding: '0', listStyle: 'none', width: '100%', display: 'flex', justifyContent: 'space-evenly', marginTop: '5px'}}
+            style={styles.starsWrapper}
           >
-            {stars}
+            {[...Array(5)].map((elem, index) => {
+              return (
+                <img
+                  src={starImg}
+                  alt=""
+                  key={index}
+                  draggable="false"
+                  style={{filter: starIsSelected.value && starIsSelected.id >= index ? 'grayscale(0)' : 'grayscale(1)'}}
+                  onMouseOver={() => setStarIsSelected({id: index, value: true})}
+                  onMouseLeave={() => setStarIsSelected({id: null, value: false})}
+                  onClick={() => onChangeRating(index + 1)}
+                />
+              )
+            })}
           </ul>
         </div>
       </div>
